@@ -1,30 +1,28 @@
-# droiddeck-migration
+# DroidDeck 迁移版
 
-Project documentation template added on 2026-10-14
+基于 Droid-Deck/DroidDeck 0.4.0 提交 `10ef8c4bd62b21872fc13382a808cb0f2f117b26` 的个人分支，加入无需电脑或 Root 的 Android 备份与恢复。
 
-## Purpose
+- 独立包名 `com.droiddeck.migration`，与官方版并存。
+- 旧 TAR + 可选设置 JSON；新格式为清单和每卷最多 2,000,000,000 字节的分卷。
+- 个人备份保留私有游戏与存档；运行环境分享包过滤账号、存档、浏览器缓存、日志、设备标识及个人设置。
+- 完整校验后恢复到临时目录，保留 Linux 链接、执行权限与回滚副本。
+- 原官方版数据不受影响；备份只读取迁移版本自身目录。
 
-State the problem this project solves and the users it serves.
+## 在手机上使用
 
-## Status
+1. 安装迁移版 APK，允许安装未知来源应用。
+2. 将所有分卷和 `backup.ddbackup.json` 放在同一个文件夹。
+3. 打开迁移版，选择“恢复分卷备份”，在系统文件选择器中选中该文件夹并确认恢复。
+4. 等待完整性检查与恢复两遍处理。留出至少备份解包大小加 1 GiB 的额外空间；现有迁移版环境会保留为回滚副本。
+5. 恢复完成后关闭应用，从手机桌面重新打开，再进入 DroidDeck。
+6. 登录账号，核对驱动和系统子进程限制。共享目录/SD 卡中的独立游戏文件需另行复制。
 
-- Initial repository structure is in place.
+“个人备份”仅供自己换机，可能包含游戏和存档中的私人信息，不能视为纯净分享包。“运行环境分享包”仅保留软件路径，不含个人设置和存档。所有分卷须一起传输，不需要先合并成大 TAR。
 
-## Setup
+## 构建
 
-Document project prerequisites and installation steps here as the runtime is selected.
+Android SDK34、Java17、Gradle8.11.1。基于已验证、同提交的原 APK 原生库与资产编译管理代码，未重新编译原生游戏引擎。原生库逐文件 SHA256 在每次打包时校验，清单见 `tools/migration/native-origin.json`。
 
-## Run
+本地构建脚本 `tools/migration/build.py` 将 Gradle缓存、输出、日志和临时文件放在外置卷，限制两个 Gradle workers。签名文件和密码保存在外置构建目录，未提交。要在另一台机器构建，需要自行生成签名并调整 SDK、Gradle及构建目录；后续升级必须使用同一签名。
 
-Document the primary local run command here when the runtime entry point is added.
-
-## Verify
-
-Document the commands that verify the project here as checks are introduced.
-
-## Documentation
-
-- [Architecture](ARCHITECTURE.md)
-- [Task status](TASK.md)
-- [Changelog](CHANGELOG.md)
-- [Project documentation](docs/README.md)
+完整源码和上游归属遵循 GPL-3.0；见 `LICENSE` 与 `docs/UPSTREAM_README.md`。Steam与Proton属于Valve，备份软件资源的使用权和账号登录仍由用户自行管理。

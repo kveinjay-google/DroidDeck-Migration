@@ -11,7 +11,7 @@ DroidDeck brings the SteamOS experience to Android: Valve's Steam client in Big 
 
 <p align="center"><img src="docs/releases/media/0.2.0/launch-into-steam.gif" width="80%" alt="Tapping DroidDeck on the Android home screen and landing in Steam Big Picture"></p>
 
-> Note: DroidDeck does not have a stand-alone website. Do not click on any download links from websites claiming to be the DroidDeck team. 
+> Note: DroidDeck does not have a stand-alone website. Do not click on any download links from websites claiming to be the DroidDeck team.
 
 ## Requirements and install
 

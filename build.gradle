@@ -1,0 +1,16 @@
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.8.0'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:2.1.0'
+        classpath 'org.jetbrains.kotlin:compose-compiler-gradle-plugin:2.1.0'
+    }
+}
+
+allprojects {
+    layout.buildDirectory = file('/Volumes/LEXA 4TB DISK/BuildOutputs/droiddeck-migration/gradle/' + project.name)
+}

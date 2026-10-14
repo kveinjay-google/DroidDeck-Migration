@@ -1,0 +1,366 @@
+{
+ "generated": 1791123963,
+ "packs": [
+  {
+   "asset": {
+    "sha256": "eb0db07ef4b0f481ec7a0f2605e88e851812ab1bbcb22976ebe31e97f2a7ce46",
+    "size": 561694,
+    "url": "https://github.com/Droid-Deck/DroidDeck-Components/releases/download/droiddeck-esync-cachyos/cachyos-cachyos-11.0-20260602-slr-1781807353-e3cb23283d78-r1.tzst"
+   },
+   "exports": "aaa3f19247c9e5518e582bd14619571498d3b12c64b8ec08a40d6bf9572afd71",
+   "files": {
+    "files/bin-arm64/wineserver": "bed2275237eafd353dd72582178894e9c0326c14cbd7a41e4bc962fbae772381",
+    "files/lib/wine/aarch64-unix/ntdll.so": "7431efaec524c2085d352788109c8901292a3cccd3b830b7ec645a20123baa11"
+   },
+   "flavor": "cachyos",
+   "id": "cachyos-cachyos-11.0-20260602-slr-1781807353-e3cb23283d78-r1",
+   "patch": {
+    "series": "cachyos-11",
+    "sha256": "1c298e3f2162c371cbc611d1f2c589743c296d7ac0efaa3fb6695d2c8baee93b"
+   },
+   "protocol": 931,
+   "rev": 1,
+   "revoked": false,
+   "source": {
+    "asset": "proton-cachyos-11.0-20260602-slr-arm64.tar.xz",
+    "commit": "3a495fb88804bea98bee2636504290a85b62b40d",
+    "ref": "cachyos-11.0-20260602-slr",
+    "repo": "CachyOS/proton-cachyos",
+    "sdk_image": "registry.gitlab.steamos.cloud/proton/steamrt4/sdk/arm64-llvm:4.0.20260331.220802-0",
+    "wine_commit": "3c92a54524b3f1e92b288b54151de279c94ba7f1"
+   },
+   "source_match": false,
+   "stock": {
+    "files/bin-arm64/wineserver": "d6acb9d1ed263325f35cde8e22b10a2374852ebf6e567699ff1a9c1ea04c75b5",
+    "files/lib/wine/aarch64-unix/ntdll.so": "e3cb23283d78980e12077f74aca2d5e049b8b6daea000bae4043b0ef612d5e7d"
+   },
+   "version": "cachyos-11.0-20260602-slr",
+   "version_line": "1781807353 cachyos-11.0-20260602-slr"
+  },
+  {
+   "asset": {
+    "sha256": "7a20dc665782c0b79240f19be54afebd94fffe49cf71642f2b3f52258638372f",
+    "size": 562917,
+    "url": "https://github.com/Droid-Deck/DroidDeck-Components/releases/download/droiddeck-esync-cachyos/cachyos-cachyos-11.0-20260702-slr-1783857182-ca9fabbcbd2c-r1.tzst"
+   },
+   "exports": "9cb7ee3cb6aac11cceaf213205b01af41e62b7a0d48f9fa9565401b0a3213736",
+   "files": {
+    "files/bin-arm64/wineserver": "c8d0b2201db613145f3172cc37e3603a127cc4a9611bbcf13f8afb0a626f999b",
+    "files/lib/wine/aarch64-unix/ntdll.so": "2addf70dee36034cb923069d902d46785586a01d5ac04fd25b17fba52f88a545"
+   },
+   "flavor": "cachyos",
+   "id": "cachyos-cachyos-11.0-20260702-slr-1783857182-ca9fabbcbd2c-r1",
+   "patch": {
+    "series": "cachyos-11",
+    "sha256": "1c298e3f2162c371cbc611d1f2c589743c296d7ac0efaa3fb6695d2c8baee93b"
+   },
+   "protocol": 932,
+   "rev": 1,
+   "revoked": false,
+   "source": {
+    "asset": "proton-cachyos-11.0-20260702-slr-arm64.tar.xz",
+    "commit": "3edf6fbb8af940de5c65b9dd0fbf366b51a218a8",
+    "ref": "cachyos-11.0-20260702-slr",
+    "repo": "CachyOS/proton-cachyos",
+    "sdk_image": "registry.gitlab.steamos.cloud/proton/steamrt4/sdk/arm64-llvm:4.0.20260331.220802-2",
+    "wine_commit": "b5f2dc7b5906ef864f83df8fef94c9f539eaad2d"
+   },
+   "source_match": false,
+   "stock": {
+    "files/bin-arm64/wineserver": "15d41ab984896a8eb846fb062cc0eba0d095335ddca8f2969e70176cbf4fe357",
+    "files/lib/wine/aarch64-unix/ntdll.so": "ca9fabbcbd2c9b02e13696ca7373a5c89dd426f3a630049853bb2233b6718950"
+   },
+   "version": "cachyos-11.0-20260702-slr",
+   "version_line": "1783857182 cachyos-11.0-20260702-slr"
+  },
+  {
+   "asset": {
+    "sha256": "8dc6d3d7e7902ad1d3d089061b8a89475d639358c95b94a0d34121a6be531f66",
+    "size": 562919,
+    "url": "https://github.com/Droid-Deck/DroidDeck-Components/releases/download/droiddeck-esync-cachyos/cachyos-cachyos-11.0-20260703-slr-1784677009-ca9fabbcbd2c-r1.tzst"
+   },
+   "exports": "9cb7ee3cb6aac11cceaf213205b01af41e62b7a0d48f9fa9565401b0a3213736",
+   "files": {
+    "files/bin-arm64/wineserver": "c8d0b2201db613145f3172cc37e3603a127cc4a9611bbcf13f8afb0a626f999b",
+    "files/lib/wine/aarch64-unix/ntdll.so": "2addf70dee36034cb923069d902d46785586a01d5ac04fd25b17fba52f88a545"
+   },
+   "flavor": "cachyos",
+   "id": "cachyos-cachyos-11.0-20260703-slr-1784677009-ca9fabbcbd2c-r1",
+   "patch": {
+    "series": "cachyos-11",
+    "sha256": "1c298e3f2162c371cbc611d1f2c589743c296d7ac0efaa3fb6695d2c8baee93b"
+   },
+   "protocol": 932,
+   "rev": 1,
+   "revoked": false,
+   "source": {
+    "asset": "proton-cachyos-11.0-20260703-slr-arm64.tar.xz",
+    "commit": "ea0053a9fbc074947d17028da0025834cc97f83a",
+    "ref": "cachyos-11.0-20260703-slr",
+    "repo": "CachyOS/proton-cachyos",
+    "sdk_image": "registry.gitlab.steamos.cloud/proton/steamrt4/sdk/arm64-llvm:4.0.20260331.220802-2",
+    "wine_commit": "b5f2dc7b5906ef864f83df8fef94c9f539eaad2d"
+   },
+   "source_match": false,
+   "stock": {
+    "files/bin-arm64/wineserver": "15d41ab984896a8eb846fb062cc0eba0d095335ddca8f2969e70176cbf4fe357",
+    "files/lib/wine/aarch64-unix/ntdll.so": "ca9fabbcbd2c9b02e13696ca7373a5c89dd426f3a630049853bb2233b6718950"
+   },
+   "version": "cachyos-11.0-20260703-slr",
+   "version_line": "1784677009 cachyos-11.0-20260703-slr"
+  },
+  {
+   "asset": {
+    "sha256": "0e556b7c2e3b97f3f871c6ea23cb2d8877ff2db4af55b501b878cbdd6f8ce126",
+    "size": 562268,
+    "url": "https://github.com/Droid-Deck/DroidDeck-Components/releases/download/droiddeck-esync-ge/ge-GE-Proton11-5-1786438171-5ebac333eb21-r1.tzst"
+   },
+   "exports": "aaa3f19247c9e5518e582bd14619571498d3b12c64b8ec08a40d6bf9572afd71",
+   "files": {
+    "files/bin-arm64/wineserver": "f9e8b1d57951c6d1f73c2921596faca9c4695a3ca17a024320dc9e7c652c0ce8",
+    "files/lib/wine/aarch64-unix/ntdll.so": "aea0c465616263fed0298c4ffa0b5e74b3e4b80c28dc0c2069e833c1b5eb55ce"
+   },
+   "flavor": "ge",
+   "id": "ge-GE-Proton11-5-1786438171-5ebac333eb21-r1",
+   "patch": {
+    "series": "valve-11",
+    "sha256": "1c298e3f2162c371cbc611d1f2c589743c296d7ac0efaa3fb6695d2c8baee93b"
+   },
+   "protocol": 931,
+   "rev": 1,
+   "revoked": false,
+   "source": {
+    "asset": "GE-Proton11-5-aarch64.tar.gz",
+    "commit": "a2b6daedb7273267359ece9d938d6de8dec596b6",
+    "ref": "GE-Proton11-5",
+    "repo": "GloriousEggroll/proton-ge-custom",
+    "sdk_image": "registry.gitlab.steamos.cloud/proton/steamrt4/sdk/arm64-llvm:4.0.20260331.220802-3",
+    "wine_commit": "36078f5f947532885a596dabbc7893c048133660"
+   },
+   "source_match": false,
+   "stock": {
+    "files/bin-arm64/wineserver": "530219c0e9defa82a28db9b0cba5cb28e2d186f32badac21b092ee15223a6872",
+    "files/lib/wine/aarch64-unix/ntdll.so": "5ebac333eb210b7c28b9ddb5fa2f59e7403dba59410bbd0373cf783ada327988"
+   },
+   "version": "GE-Proton11-5",
+   "version_line": "1786438171 GE-Proton11-5"
+  },
+  {
+   "asset": {
+    "sha256": "960882e69b8da1ac47eca433bdf529234795c86ad3de665c98b11374908bc9d9",
+    "size": 568103,
+    "url": "https://github.com/Droid-Deck/DroidDeck-Components/releases/download/droiddeck-esync-ge/ge-GE-Proton11-6-1787951695-6dfe2fd82766-r1.tzst"
+   },
+   "exports": "aaa3f19247c9e5518e582bd14619571498d3b12c64b8ec08a40d6bf9572afd71",
+   "files": {
+    "files/bin-arm64/wineserver": "92073cd8ff23a497e9822b3e7ae3fe1acb14934f7df39351f4c4bbd70e0cfec3",
+    "files/lib/wine/aarch64-unix/ntdll.so": "17083839b2a55d806b97916c3432216055f60fbdba28206f9e2ba34d37a59645"
+   },
+   "flavor": "ge",
+   "id": "ge-GE-Proton11-6-1787951695-6dfe2fd82766-r1",
+   "patch": {
+    "series": "valve-11",
+    "sha256": "1c298e3f2162c371cbc611d1f2c589743c296d7ac0efaa3fb6695d2c8baee93b"
+   },
+   "protocol": 935,
+   "rev": 1,
+   "revoked": false,
+   "source": {
+    "asset": "GE-Proton11-6-aarch64.tar.gz",
+    "commit": "7e88cefffc122ea1584c2156b8d7bae6cf69b2a7",
+    "ref": "GE-Proton11-6",
+    "repo": "GloriousEggroll/proton-ge-custom",
+    "sdk_image": "registry.gitlab.steamos.cloud/proton/steamrt4/sdk/arm64-llvm:4.0.20260714.251823-0",
+    "wine_commit": "9358696fe9a2261329f4a83aa6a65fd436106154"
+   },
+   "source_match": false,
+   "stock": {
+    "files/bin-arm64/wineserver": "80e69967bbfc75bd69b5143bbf4660be901b3d9505c44e3838e4540123d0eab5",
+    "files/lib/wine/aarch64-unix/ntdll.so": "6dfe2fd827665ca779a48c54cd29a689c29c426b90f89e1815c17f180a135260"
+   },
+   "version": "GE-Proton11-6",
+   "version_line": "1787951695 GE-Proton11-6"
+  },
+  {
+   "asset": {
+    "sha256": "0f4e1311809b60567e374fc3930fe1782de20a0c503c7cb746d65e718f1420eb",
+    "size": 570783,
+    "url": "https://github.com/Droid-Deck/DroidDeck-Components/releases/download/droiddeck-esync-ge/ge-GE-Proton11-7-1789520806-6ba770ec0df5-r1.tzst"
+   },
+   "exports": "9cb7ee3cb6aac11cceaf213205b01af41e62b7a0d48f9fa9565401b0a3213736",
+   "files": {
+    "files/bin-arm64/wineserver": "c162963b322c3b56146cbfa94467047f6a00525bf1d11afadb2ba37044e93cf1",
+    "files/lib/wine/aarch64-unix/ntdll.so": "d4f397be65fdec36f96a9905bfe2eb0c248010ae480d5b61f8575c7c9b835a54"
+   },
+   "flavor": "ge",
+   "id": "ge-GE-Proton11-7-1789520806-6ba770ec0df5-r1",
+   "patch": {
+    "series": "valve-11",
+    "sha256": "1c298e3f2162c371cbc611d1f2c589743c296d7ac0efaa3fb6695d2c8baee93b"
+   },
+   "protocol": 938,
+   "rev": 1,
+   "revoked": false,
+   "source": {
+    "asset": "GE-Proton11-7-aarch64.tar.gz",
+    "commit": "c191f35dcebbeccfacd3b4c6f6eea026e588c1c2",
+    "ref": "GE-Proton11-7",
+    "repo": "GloriousEggroll/proton-ge-custom",
+    "sdk_image": "registry.gitlab.steamos.cloud/proton/steamrt4/sdk/arm64-llvm:4.0.20260714.251823-0",
+    "wine_commit": "46b29104e3741fe23bf5e2547196a253aab88c89"
+   },
+   "source_match": false,
+   "stock": {
+    "files/bin-arm64/wineserver": "19854c7b46328b4a4e4bc35b723b3b78191550d99cf2c99cd8784e5896a81125",
+    "files/lib/wine/aarch64-unix/ntdll.so": "6ba770ec0df52311b760a0866226a83c177f67227598f990942382cad42b4bc3"
+   },
+   "version": "GE-Proton11-7",
+   "version_line": "1789520806 GE-Proton11-7"
+  },
+  {
+   "asset": {
+    "sha256": "4d725de7c6ae50b6fa30c7f3cabbc136d047a5c298ed544908d8f8d295b064f8",
+    "size": 561395,
+    "url": "https://github.com/Droid-Deck/DroidDeck-Components/releases/download/droiddeck-esync-valve/valve-experimental-11.0-20260924-arm64-1790224406-d2d734b53183-r1.tzst"
+   },
+   "exports": "aaa3f19247c9e5518e582bd14619571498d3b12c64b8ec08a40d6bf9572afd71",
+   "files": {
+    "files/bin-arm64/wineserver": "48d5744bdec01645e3d3a81a1e74bf6d7c18610526c9bd24a30c039698065456",
+    "files/lib/wine/aarch64-unix/ntdll.so": "767fb93dd3932e3920d1bc3c4273ee9f51b9eec9520575c6c50ffdf8967ecc59"
+   },
+   "flavor": "valve",
+   "id": "valve-experimental-11.0-20260924-arm64-1790224406-d2d734b53183-r1",
+   "patch": {
+    "series": "valve-11",
+    "sha256": "1c298e3f2162c371cbc611d1f2c589743c296d7ac0efaa3fb6695d2c8baee93b"
+   },
+   "protocol": 931,
+   "rev": 1,
+   "revoked": false,
+   "source": {
+    "asset": "",
+    "commit": "22f5f694d698d786a9e8ff91d559147c8189a889",
+    "ref": "experimental-11.0-20260924",
+    "repo": "ValveSoftware/Proton",
+    "sdk_image": "registry.gitlab.steamos.cloud/proton/steamrt4/sdk/arm64-llvm:4.0.20260714.251823-0",
+    "wine_commit": "adea6cbac9d00bb22910145354d00c463fcf3afc"
+   },
+   "source_match": true,
+   "stock": {
+    "files/bin-arm64/wineserver": "dc6b16a7428df4beca04620839fc13e231a529270bd40b43c3ae3dd2d990995c",
+    "files/lib/wine/aarch64-unix/ntdll.so": "d2d734b53183750f27bd0c7a4093b6665fc94947a38d1bc444411fe6c85fc296"
+   },
+   "version": "experimental-11.0-20260924-arm64",
+   "version_line": "1790224406 experimental-11.0-20260924-arm64"
+  },
+  {
+   "asset": {
+    "sha256": "ea9770dbbf83e192d34d36d03e09541d816fa4ab7d1a43d64334e077f1baa0f5",
+    "size": 561449,
+    "url": "https://github.com/Droid-Deck/DroidDeck-Components/releases/download/droiddeck-esync-valve/valve-experimental-11.0-20261001-arm64-1790819359-76e24eb8146d-r1.tzst"
+   },
+   "exports": "aaa3f19247c9e5518e582bd14619571498d3b12c64b8ec08a40d6bf9572afd71",
+   "files": {
+    "files/bin-arm64/wineserver": "2be8a8dec8d8ddc13dc94223c9fac4b9af1e718923692de21e7908248b6a5812",
+    "files/lib/wine/aarch64-unix/ntdll.so": "2237cde533d92ebc28a9c652b7c0245ee175028edbdf146683273a8350d95684"
+   },
+   "flavor": "valve",
+   "id": "valve-experimental-11.0-20261001-arm64-1790819359-76e24eb8146d-r1",
+   "patch": {
+    "series": "valve-11",
+    "sha256": "1c298e3f2162c371cbc611d1f2c589743c296d7ac0efaa3fb6695d2c8baee93b"
+   },
+   "protocol": 931,
+   "rev": 1,
+   "revoked": false,
+   "source": {
+    "asset": "",
+    "commit": "70b7e109e8fc0783a509805f3d1bc090b55dac3f",
+    "ref": "experimental-11.0-20261001",
+    "repo": "ValveSoftware/Proton",
+    "sdk_image": "registry.gitlab.steamos.cloud/proton/steamrt4/sdk/arm64-llvm:4.0.20260714.251823-0",
+    "wine_commit": "6d211aabd1d325c9990a5fd7a81b9db37caae12d"
+   },
+   "source_match": true,
+   "stock": {
+    "files/bin-arm64/wineserver": "563e256450dfaa30b0ce468159ee3634f989886d5ed1f09b342ccabee9f2b933",
+    "files/lib/wine/aarch64-unix/ntdll.so": "76e24eb8146d3afec16e2585795205a9bd7343628af46524ec4933132211bb45"
+   },
+   "version": "experimental-11.0-20261001-arm64",
+   "version_line": "1790819359 experimental-11.0-20261001-arm64"
+  },
+  {
+   "asset": {
+    "sha256": "7f0c0908751c621558dda12797c19c643e5cda067368af10b156033b1394e6ff",
+    "size": 559828,
+    "url": "https://github.com/Droid-Deck/DroidDeck-Components/releases/download/droiddeck-esync-valve/valve-proton-11.0-2b-arm64-1787950357-9c618d49c992-r1.tzst"
+   },
+   "exports": "aaa3f19247c9e5518e582bd14619571498d3b12c64b8ec08a40d6bf9572afd71",
+   "files": {
+    "files/bin-arm64/wineserver": "eae7b1cb48249cb63c3bb844d139ac5f39db1761a2900d862d6c1f3b9524eaca",
+    "files/lib/wine/aarch64-unix/ntdll.so": "3963ec252f34246d0375490fab1e23b190efa6f1a2e7c660b96cf960c5231a11"
+   },
+   "flavor": "valve",
+   "id": "valve-proton-11.0-2b-arm64-1787950357-9c618d49c992-r1",
+   "patch": {
+    "series": "valve-11",
+    "sha256": "1c298e3f2162c371cbc611d1f2c589743c296d7ac0efaa3fb6695d2c8baee93b"
+   },
+   "protocol": 931,
+   "rev": 1,
+   "revoked": false,
+   "source": {
+    "asset": "",
+    "commit": "b7a763327f0cb76e9e0bd53dc4de95dee0d4c3b7",
+    "ref": "proton-11.0-2b",
+    "repo": "ValveSoftware/Proton",
+    "sdk_image": "registry.gitlab.steamos.cloud/proton/steamrt4/sdk/arm64-llvm:4.0.20260331.220802-2",
+    "wine_commit": "dc26e61847081a1b5cb0733dc30feba6ee575482"
+   },
+   "source_match": true,
+   "stock": {
+    "files/bin-arm64/wineserver": "25ea49371e70b5e9989ee9ff28cadab21b4b6d8f2ff4e235d1e55c16bb77463b",
+    "files/lib/wine/aarch64-unix/ntdll.so": "9c618d49c9926f55d8a28f10c4cfd514d26e654d5bc36a1c639730abf61dd1ff"
+   },
+   "version": "proton-11.0-2b-arm64",
+   "version_line": "1787950357 proton-11.0-2b-arm64"
+  },
+  {
+   "asset": {
+    "sha256": "e0509d154c14cf3f28a97b270c357178aa8478973dcc54d114f18122cc7c338d",
+    "size": 559829,
+    "url": "https://github.com/Droid-Deck/DroidDeck-Components/releases/download/droiddeck-esync-valve/valve-proton-11.0-2c-arm64-1788504814-9c618d49c992-r1.tzst"
+   },
+   "exports": "aaa3f19247c9e5518e582bd14619571498d3b12c64b8ec08a40d6bf9572afd71",
+   "files": {
+    "files/bin-arm64/wineserver": "eae7b1cb48249cb63c3bb844d139ac5f39db1761a2900d862d6c1f3b9524eaca",
+    "files/lib/wine/aarch64-unix/ntdll.so": "3963ec252f34246d0375490fab1e23b190efa6f1a2e7c660b96cf960c5231a11"
+   },
+   "flavor": "valve",
+   "id": "valve-proton-11.0-2c-arm64-1788504814-9c618d49c992-r1",
+   "patch": {
+    "series": "valve-11",
+    "sha256": "1c298e3f2162c371cbc611d1f2c589743c296d7ac0efaa3fb6695d2c8baee93b"
+   },
+   "protocol": 931,
+   "rev": 1,
+   "revoked": false,
+   "source": {
+    "asset": "",
+    "commit": "5b89db940e0ebe3a137a6009a3589232fe084c09",
+    "ref": "proton-11.0-2c",
+    "repo": "ValveSoftware/Proton",
+    "sdk_image": "registry.gitlab.steamos.cloud/proton/steamrt4/sdk/arm64-llvm:4.0.20260331.220802-2",
+    "wine_commit": "dc26e61847081a1b5cb0733dc30feba6ee575482"
+   },
+   "source_match": true,
+   "stock": {
+    "files/bin-arm64/wineserver": "25ea49371e70b5e9989ee9ff28cadab21b4b6d8f2ff4e235d1e55c16bb77463b",
+    "files/lib/wine/aarch64-unix/ntdll.so": "9c618d49c9926f55d8a28f10c4cfd514d26e654d5bc36a1c639730abf61dd1ff"
+   },
+   "version": "proton-11.0-2c-arm64",
+   "version_line": "1788504814 proton-11.0-2c-arm64"
+  }
+ ],
+ "schema": 1
+}

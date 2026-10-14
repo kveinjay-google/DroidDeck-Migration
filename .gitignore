@@ -40,3 +40,8 @@ keystore/*.keystore
 docs/releases/media/
 app/src/main/jniLibs/
 app/src/main/cpp/waylandcomp/prebuilt/
+
+.kotlin/
+
+__pycache__/
+*.py[cod]

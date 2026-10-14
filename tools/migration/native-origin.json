@@ -1,0 +1,29 @@
+{
+  "source_commit": "10ef8c4bd62b21872fc13382a808cb0f2f117b26",
+  "apk_sha256": "9df9e89a0b34e5f96ae8050640f86f2e15e3876030b484343dd2039574aea5bf",
+  "members": {
+    "app/src/main/jniLibs/arm64-v8a/libc++_shared.so": "b5d97c38a728afe28d341cda3369f512d35eaf9c680c1b0563cd6a63e395230f",
+    "app/src/main/jniLibs/arm64-v8a/libdeviceinfo.so": "c8fc33fdf7eb4723588105a3579509639b72f6ef7fd4526de1b3161628590052",
+    "app/src/main/jniLibs/arm64-v8a/libdirectaudiorelay.so": "d45bff706e77050c3f38705e67b0e400087247c50b987ee1dcdf54b6c7a23f21",
+    "app/src/main/jniLibs/arm64-v8a/libdroiddeckstores.so": "4204838f7e5601c1c6a25960d03a328f16abd99a863a5fd4c6b90ecbd15e56e7",
+    "app/src/main/jniLibs/arm64-v8a/libdroiddeckwayland.so": "f3f263d1dc82082eabe0506a59a1b7407b2b5f65d0511c15287024c654366c4a",
+    "app/src/main/jniLibs/arm64-v8a/libffi.so": "8855ba6dc12e9abf40729481a7a99aa391ac7b2e77bad4fbe0bb51cd66216c0e",
+    "app/src/main/jniLibs/arm64-v8a/libfile_redirect_hook.so": "6299c220088a30d52e9756be309b8c9a9093810426515a3c8ee3d389850cbcbd",
+    "app/src/main/jniLibs/arm64-v8a/libgsl_alloc_hook.so": "ec42d3f42d48f7461487f3f85526f0a1829bb498e33088bf266644491de9bff0",
+    "app/src/main/jniLibs/arm64-v8a/libhook_impl.so": "2acd8034ee4e6fb454add39d2e041a14d43c6b9d0650ecb03021f0900b98afc6",
+    "app/src/main/jniLibs/arm64-v8a/libltdl.so": "231ebfb2e12e74e8bd3825e3ff1e1e8b7a58529b36ab0719c648632eacbafd95",
+    "app/src/main/jniLibs/arm64-v8a/libmain_hook.so": "4655513f2760a81f62ace59651ee56a456eb1d5b782b51c6cefd5b876263f1a3",
+    "app/src/main/jniLibs/arm64-v8a/libproot-loader.so": "cbdef0e652c2b78af25d867e1719fdebbb0915e25aae2dd35b3b5c1835f6b551",
+    "app/src/main/jniLibs/arm64-v8a/libproot.so": "dcfc32659944b1b349996381837c0e7c8ec1868572b0d0733b58f2c7bb7b326e",
+    "app/src/main/jniLibs/arm64-v8a/libpulse.so": "a3ea7e707e0cd2c4e611773e2f19034aeef3ca9b2a021d926ae044acddc23c75",
+    "app/src/main/jniLibs/arm64-v8a/libpulseaudio.so": "e0f3ab4b564b06af3e9f58ae5ef52a1646d12fe86989c146200d24298a790c65",
+    "app/src/main/jniLibs/arm64-v8a/libpulsecommon-13.0.so": "c82317cc3ce8d46b275334d4054fa7744e0a5dfc68ee54c671d93bcaf20bd0e6",
+    "app/src/main/jniLibs/arm64-v8a/libpulsecore-13.0.so": "4a84bce16c83b9208e2e6ba41fc35212df582740cd02d9fba2deacdf15ce5c5e",
+    "app/src/main/jniLibs/arm64-v8a/libsdnative.so": "7fd89ab79f0137f9dd815735aa6c6bdf62c60966dcfb674872e9b2660f4aef16",
+    "app/src/main/jniLibs/arm64-v8a/libsndfile.so": "490dfa7b2e4011072b3b467f11a52c8a6449f0d9fd177996f39e2bf3b4952241",
+    "app/src/main/jniLibs/arm64-v8a/libspake2.so": "66e4f2e70280cea1c1849b4b802f5da8de8d95df5613b5b5ae0c00a890786fd5",
+    "app/src/main/jniLibs/arm64-v8a/libtermux.so": "d3f16950b523fc8eee5cb7be7b17d5299b1b18bf6731988706a81c340f2ca5f0",
+    "app/src/main/jniLibs/arm64-v8a/libwayland-server.so": "2daff7500b6acee55291567d786653ba75f5aecf5a5e648fce4c10fe6bc7a8ea",
+    "app/src/main/jniLibs/arm64-v8a/libzstd-jni-1.5.2-3.so": "f7367bf8e201baaa7bcfa1e62e42451040818ea79284b05a473f8c106a72b618"
+  }
+}
