@@ -26,3 +26,13 @@ Android SDK34、Java17、Gradle8.11.1。基于已验证、同提交的原 APK �
 本地构建脚本 `tools/migration/build.py` 将 Gradle缓存、输出、日志和临时文件放在外置卷，限制两个 Gradle workers。签名文件和密码保存在外置构建目录，未提交。要在另一台机器构建，需要自行生成签名并调整 SDK、Gradle及构建目录；后续升级必须使用同一签名。
 
 完整源码和上游归属遵循 GPL-3.0；见 `LICENSE` 与 `docs/UPSTREAM_README.md`。Steam与Proton属于Valve，备份软件资源的使用权和账号登录仍由用户自行管理。
+
+## 实机验证范围
+
+2026-10-14：50 项 JVM/Robolectric 测试通过；已在 Android 实机通过系统文件选择器完成约 8.68 GB 的五卷恢复，显示“恢复完成（r9）”，重启后 DroidDeck 主界面正常打开。Steam 进入图形会话启动阶段；账号登录和具体游戏运行尚未验证。不代表所有安卓机型兼容。
+
+### 准备原生构建输入
+
+本仓库不保存手机备份、运行环境分卷或签名私钥。此管理代码分支使用官方 0.4.0 APK 的原生库；先从上游 Release 获取标准 DroidDeck-0.4.0.apk（不是 antutu/ludashi/pubg 变体），确认 SHA256 为 `9df9e89a0b34e5f96ae8050640f86f2e15e3876030b484343dd2039574aea5bf`。
+
+从该 APK 解出 `lib/arm64-v8a/*.so` 到 `app/src/main/jniLibs/arm64-v8a/`，解出 `assets/runtime/` 到 `app/src/main/assets/runtime/`。保留本仓库用于独立套接字的 shim，Gradle 负责组合原资产与更新后的脚本；每次打包校验 `native-origin.json` 与 `runtime-payload-origin.json`。不要导入原 APK 的 dexopt 配置。构建输出路径和签名由本地脚本配置；首次构建请调整 `build.py`、`settings.gradle`、`verify_native.py` 和 `app/build.gradle` 中的外置盘路径以符合自己的环境。
