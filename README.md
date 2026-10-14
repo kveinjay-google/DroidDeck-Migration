@@ -35,4 +35,4 @@ Android SDK34、Java17、Gradle8.11.1。基于已验证、同提交的原 APK �
 
 本仓库不保存手机备份、运行环境分卷或签名私钥。此管理代码分支使用官方 0.4.0 APK 的原生库；先从上游 Release 获取标准 DroidDeck-0.4.0.apk（不是 antutu/ludashi/pubg 变体），确认 SHA256 为 `9df9e89a0b34e5f96ae8050640f86f2e15e3876030b484343dd2039574aea5bf`。
 
-从该 APK 解出 `lib/arm64-v8a/*.so` 到 `app/src/main/jniLibs/arm64-v8a/`，解出 `assets/runtime/` 到 `app/src/main/assets/runtime/`。保留本仓库用于独立套接字的 shim，Gradle 负责组合原资产与更新后的脚本；每次打包校验 `native-origin.json` 与 `runtime-payload-origin.json`。不要导入原 APK 的 dexopt 配置。构建输出路径和签名由本地脚本配置；首次构建请调整 `build.py`、`settings.gradle`、`verify_native.py` 和 `app/build.gradle` 中的外置盘路径以符合自己的环境。
+从该 APK 解出 `lib/arm64-v8a/*.so` 到 `app/src/main/jniLibs/arm64-v8a/`，按 `runtime-payload-origin.json` 的清单将对应 `assets/` 文件解到 `app/src/main/assets/`。保留本仓库用于独立套接字的 shim，Gradle 负责组合原资产与更新后的脚本；每次打包校验 `native-origin.json` 与 `runtime-payload-origin.json`。不要导入原 APK 的 dexopt 配置。构建输出路径和签名由本地脚本配置；首次构建请调整 `build.py`、根目录 `build.gradle`、`verify_native.py` 和 `app/build.gradle` 中的外置盘路径以符合自己的环境。
