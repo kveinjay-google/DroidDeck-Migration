@@ -1,0 +1,42 @@
+# macOS
+.DS_Store
+.AppleDouble
+
+# Editors
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Local environment and credentials
+/.env
+/.env.*
+!/.env.example
+!/.env.*.example
+!/.env.example.*
+/*.pem
+/*.key
+/*.p12
+/*.pfx
+/credentials.json
+/secrets.json
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+.cache/
+
+# DroidDeck migration build inputs and outputs
+.gradle/
+**/build/
+**/.cxx/
+local.properties
+keystore/*.p12
+keystore/*.jks
+keystore/*.keystore
+.reuse-native/
+*.apk
+docs/releases/media/
+app/src/main/jniLibs/
+app/src/main/cpp/waylandcomp/prebuilt/
