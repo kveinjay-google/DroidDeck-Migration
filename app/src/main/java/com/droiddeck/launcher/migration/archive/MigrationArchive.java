@@ -257,6 +257,10 @@ public final class MigrationArchive {
         if (leaf.startsWith("ssfn")) return false;
         if (under(n, "linuxfs/root/.steam")) return directory || symlink;
         if (!runtimeOnly) return true;
+        if (n.equals("linuxfs/etc/shadow") || n.equals("linuxfs/etc/shadow-") ||
+            n.equals("linuxfs/etc/gshadow") || n.equals("linuxfs/etc/gshadow-") ||
+            under(n, "linuxfs/etc/ssl/private") || under(n, "linuxfs/etc/pacman.d/gnupg/private-keys-v1.d") ||
+            (n.startsWith("linuxfs/etc/ssh/ssh_host_") && (n.endsWith("_key") || n.endsWith("_key.pub")))) return false;
         if (under(n, "graphics_driver") || under(n, "components")) return true;
         if (n.equals("linuxfs")) return directory;
         if (!n.startsWith("linuxfs/")) return false;
