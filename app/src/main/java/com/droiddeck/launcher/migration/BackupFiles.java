@@ -22,6 +22,11 @@ public final class BackupFiles {
   }return result;
  }
  public InputStream open(Uri uri)throws IOException{InputStream in=resolver.openInputStream(uri);if(in==null)throw new IOException("无法读取备份文件");return new BufferedInputStream(in,65536);}
+ public void describe(Uri document,MigrationDiagnostics log){
+  try(Cursor c=resolver.query(document,new String[]{DocumentsContract.Document.COLUMN_DISPLAY_NAME,DocumentsContract.Document.COLUMN_SIZE},null,null,null)){
+   if(c!=null&&c.moveToFirst())log.event("documentMetadata","name="+c.getString(0)+"; actualSize="+(c.isNull(1)?"unknown":Long.toString(c.getLong(1))));
+  }catch(Exception e){log.event("documentMetadata","unavailable: "+e.getClass().getSimpleName());}
+ }
  public static JSONObject readJson(InputStream input)throws IOException,JSONException{
   try(InputStream in=input;ByteArrayOutputStream out=new ByteArrayOutputStream()){byte[] buf=new byte[8192];int n;while((n=in.read(buf))!=-1){if(out.size()+n>1024*1024)throw new IOException("清单/设置文件超过 1 MiB");out.write(buf,0,n);}return new JSONObject(out.toString("UTF-8"));}
  }

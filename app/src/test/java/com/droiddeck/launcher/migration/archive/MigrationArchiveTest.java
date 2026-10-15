@@ -6,6 +6,12 @@ import java.nio.file.*;
 import java.util.*;
 import org.apache.commons.compress.archivers.tar.*;
 public class MigrationArchiveTest {
+ @Test public void unsafePathExplainsEntryAndRule() throws Exception {
+  IOException e=assertThrows(IOException.class,()->MigrationArchive.inspect(new ByteArrayInputStream(with("linuxfs/../escape")),100,null));
+  assertTrue(e.getMessage(),e.getMessage().contains("linuxfs/../escape"));
+  assertTrue(e.getMessage(),e.getMessage().contains("parent traversal"));
+  assertTrue(e.getMessage(),e.getMessage().contains("archiveOffset="));
+ }
  private byte[] tar(String... names) throws Exception { ByteArrayOutputStream b=new ByteArrayOutputStream(); try(TarArchiveOutputStream t=new TarArchiveOutputStream(b)){ t.setLongFileMode(TarArchiveOutputStream.LONGFILE_POSIX); for(String n:names){TarArchiveEntry e=new TarArchiveEntry(n);e.setSize(1);t.putArchiveEntry(e);t.write(1);t.closeArchiveEntry();}}return b.toByteArray(); }
  private String[] valid(){return new String[]{"linuxfs/usr/bin/gamescope","linuxfs/usr/local/bin/droiddeck-session","linuxfs/.version"};}
  private byte[] with(String name) throws Exception {String[] n=Arrays.copyOf(valid(),4);n[3]=name;return tar(n);}

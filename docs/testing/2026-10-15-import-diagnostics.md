@@ -1,0 +1,7 @@
+# Import diagnostics verification — 2026-10-15
+
+57 focused JVM/Robolectric tests: zero failures/errors. RED/GREEN checks confirmed old archive errors lack entry/rule/offset, old volume errors lack expected/actual hash, and raw JSON exceptions disclose input contents; regressions now pass. Persistence, 5-report retention, bounded events/final failure and Android viewer/document-picker intent tested. Actual Android parser regression verifies a unique settings-content sentinel does not enter the report. Independent source review approved the JSON-safe cause/stack renderer.
+
+`:app:testDebugUnitTest --tests com.droiddeck.launcher.migration.* :app:assembleRelease` succeeded (build-diagnostics-verified.log, external BuildOutputs). Packaged latest source timestamps checked. APK com.droiddeck.migration versionCode 2, versionName 0.4.0-migration.2; APK SHA256 00dcb46886d7890cf8f0abe55d86f91d32bedfd91740f363b648b37122c4882e. Signer SHA256 23e10310269609001d3374ad872283b9cc95d1998cd0d2ec2f0836fa2f87c8b3 matches prior release. All 23 native libraries and 118 staged runtime assets verified inside final APK.
+
+No Android device connected: this version's on-device viewing/export and physical restore are not verified. Prior migration.1 completed 8.68 GB SAF restore and startup. Customer Unsafe archive path root cause remains unknown until a fresh failure report is obtained; no archive safety restrictions were weakened.

@@ -40,8 +40,13 @@ public final class MigrationArchive {
         List<TarArchiveEntry> directories = new ArrayList<>();
         byte[] buffer = new byte[64 * 1024];
         long payloadEnd = 0, reportedBytes = 0, reportedEntries = 0;
-        TarArchiveEntry entry;
+        TarArchiveEntry entry = null;
+        String context = "<before first entry>";
+        long entryNumber = 0;
+        try {
         while ((entry = tar.getNextEntry()) != null) {
+            entryNumber = result.entries + 1;
+            context = "entry=" + display(entry.getName()) + " type=" + (entry.isSymbolicLink()?"symlink":entry.isLink()?"hardlink":entry.isDirectory()?"directory":"file") + " size=" + entry.getSize() + " linkTarget=" + display(entry.getLinkName());
             if (!entry.isCheckSumOK() || !tar.canReadEntryData(entry)) throw new IOException("Invalid TAR entry");
             char kind = entry.isDirectory() ? 'd' : entry.isSymbolicLink() ? 's' : entry.isLink() ? 'h' : entry.isFile() ? 'f' : '?';
             if (kind == '?') throw new IOException("Unsupported archive entry: " + entry.getName());
@@ -78,6 +83,7 @@ public final class MigrationArchive {
                 progress.update(result.unpackedBytes, result.entries); reportedBytes = result.unpackedBytes; reportedEntries = result.entries;
             }
         }
+        context = "archive structure validation; lastEntry=" + context;
         long trailerStart = ((payloadEnd + 511) / 512) * 512;
         if (in.count < trailerStart + 1024) throw new IOException("Incomplete TAR trailer");
         for (Map.Entry<String, Character> item : kinds.entrySet()) {
@@ -107,6 +113,7 @@ public final class MigrationArchive {
             throw new IOException("Archive lacks required runtime files");
         if (root != null) {
             for (TarArchiveEntry e : links) if (e.isLink()) {
+                context = "hardlink reconstruction; entry=" + display(e.getName()) + "; linkTarget=" + display(e.getLinkName());
                 Path source = root.resolve(resolved.get(name(e.getName()))), target = root.resolve(name(e.getName()));
                 checkAncestors(source); checkAncestors(target);
                 if (!Files.isRegularFile(source, LinkOption.NOFOLLOW_LINKS)) throw new IOException("Unresolved hardlink target");
@@ -115,13 +122,17 @@ public final class MigrationArchive {
                 mode(target, e.getMode());
             }
             for (TarArchiveEntry e : links) if (e.isSymbolicLink()) {
+                context = "symlink reconstruction; entry=" + display(e.getName()) + "; linkTarget=" + display(e.getLinkName());
                 Path target = root.resolve(name(e.getName())); checkAncestors(target); Files.createDirectories(target.getParent()); Files.createSymbolicLink(target, Paths.get(e.getLinkName()));
             }
             directories.sort(Comparator.comparingInt((TarArchiveEntry e) -> e.getName().length()).reversed());
-            for (TarArchiveEntry e : directories) mode(root.resolve(name(e.getName())), e.getMode());
+            for (TarArchiveEntry e : directories) { context = "directory permissions; entry=" + display(e.getName()); mode(root.resolve(name(e.getName())), e.getMode()); }
         }
         if (progress != null) progress.update(result.unpackedBytes, result.entries);
         return result;
+        } catch (IOException | RuntimeException failure) {
+            throw new IOException("Archive failure: " + failure.getMessage() + "; " + context + "; entryNumber=" + entryNumber + "; archiveOffset=" + in.count + "; unpackedBytes=" + result.unpackedBytes, failure);
+        }
     }
     private static boolean nonemptyFile(String path, Map<String, Character> kinds, Map<String, Long> sizes, Map<String, String> resolved) {
         Character kind = kinds.get(path);
@@ -146,12 +157,18 @@ public final class MigrationArchive {
     }
     private static String name(String raw) throws IOException {
         textBytes(raw);
-        if (raw == null || raw.isEmpty() || raw.startsWith("/") || raw.indexOf('\\') >= 0 || raw.indexOf('\0') >= 0 || raw.matches("^[A-Za-z]:.*")) throw new IOException("Unsafe archive path");
+        if (raw == null || raw.isEmpty()) throw unsafe(raw,"empty path");
+        if (raw.startsWith("/")) throw unsafe(raw,"absolute path");
+        if (raw.indexOf('\\') >= 0) throw unsafe(raw,"backslash separator");
+        if (raw.indexOf('\0') >= 0) throw unsafe(raw,"NUL character");
+        if (raw.matches("^[A-Za-z]:.*")) throw unsafe(raw,"Windows drive path");
         StringBuilder normalized = new StringBuilder();
-        for (String part : raw.split("/")) { if (part.equals("..")) throw new IOException("Unsafe archive path"); if (part.isEmpty() || part.equals(".")) continue; if (normalized.length() > 0) normalized.append('/'); normalized.append(part); }
+        for (String part : raw.split("/")) { if (part.equals("..")) throw unsafe(raw,"parent traversal (..)"); if (part.isEmpty() || part.equals(".")) continue; if (normalized.length() > 0) normalized.append('/'); normalized.append(part); }
         if (normalized.length() == 0) throw new IOException("Empty archive path");
         return normalized.toString();
     }
+    private static IOException unsafe(String raw,String reason) { return new IOException("Unsafe archive path: " + display(raw) + "; rule=" + reason); }
+    private static String display(String value) { if(value==null)return "<null>";String bounded=value.length()>4096?value.substring(0,4096)+"[truncated]":value;return bounded.replace("\n","\\n").replace("\r","\\r").replace("\0","\\0"); }
     private static void checkAncestors(Path path) throws IOException { for (Path p = path; p != null; p = p.getParent()) if (Files.isSymbolicLink(p)) throw new IOException("Symbolic link in staging path"); }
     private static void copy(InputStream in, OutputStream out, long size, byte[] buffer, Progress progress, long base, long entries) throws IOException {
         long done = 0, reported = 0;

@@ -45,10 +45,10 @@ public final class VolumeStreams {
   public int read()throws IOException{byte[] b=new byte[1];int n=read(b,0,1);return n<0?-1:b[0]&255;}
   public int read(byte[] b,int off,int len)throws IOException{
    if(closed)throw new IOException("备份流已关闭");if(off<0||len<0||off>b.length-len)throw new IndexOutOfBoundsException();if(len==0)return 0;if(eof)return -1;
-   while(true){if(current==null){if(index==parts.size()){eof=true;if(!hex(whole.digest()).equals(expected))throw new IOException("整个备份的 SHA256 校验失败");return -1;}current=source.open(parts.get(index).name);part=digest();count=0;}
+   while(true){if(current==null){if(index==parts.size()){eof=true;String actual=hex(whole.digest());if(!actual.equals(expected))throw new IOException("整个备份的 SHA256 校验失败; expectedSha256="+expected+"; actualSha256="+actual);return -1;}try{current=source.open(parts.get(index).name);}catch(IOException e){throw new IOException("无法打开分卷："+parts.get(index).name,e);}part=digest();count=0;}
     Part p=parts.get(index);int n=current.read(b,off,(int)Math.min(len,Math.max(1,p.bytes-count)));
-    if(n<0){current.close();current=null;if(count!=p.bytes||!hex(part.digest()).equals(p.sha256))throw new IOException("分卷损坏或不完整："+p.name);index++;continue;}
-    if(n==0)continue;count+=n;if(count>p.bytes)throw new IOException("分卷大小不符："+p.name);part.update(b,off,n);whole.update(b,off,n);return n;
+    if(n<0){current.close();current=null;String actual=hex(part.digest());if(count!=p.bytes||!actual.equals(p.sha256))throw new IOException("分卷损坏或不完整："+p.name+"; expectedBytes="+p.bytes+"; actualBytes="+count+"; expectedSha256="+p.sha256+"; actualSha256="+actual);index++;continue;}
+    if(n==0)continue;count+=n;if(count>p.bytes)throw new IOException("分卷大小不符："+p.name+"; expectedBytes="+p.bytes+"; actualBytesAtLeast="+count);part.update(b,off,n);whole.update(b,off,n);return n;
    }
   }
   public void close()throws IOException{closed=true;if(current!=null)current.close();}

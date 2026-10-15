@@ -36,3 +36,9 @@ Android SDK34、Java17、Gradle8.11.1。基于已验证、同提交的原 APK �
 本仓库不保存手机备份、运行环境分卷或签名私钥。此管理代码分支使用官方 0.4.0 APK 的原生库；先从上游 Release 获取标准 DroidDeck-0.4.0.apk（不是 antutu/ludashi/pubg 变体），确认 SHA256 为 `9df9e89a0b34e5f96ae8050640f86f2e15e3876030b484343dd2039574aea5bf`。
 
 从该 APK 解出 `lib/arm64-v8a/*.so` 到 `app/src/main/jniLibs/arm64-v8a/`，按 `runtime-payload-origin.json` 的清单将对应 `assets/` 文件解到 `app/src/main/assets/`。保留本仓库用于独立套接字的 shim，Gradle 负责组合原资产与更新后的脚本；每次打包校验 `native-origin.json` 与 `runtime-payload-origin.json`。不要导入原 APK 的 dexopt 配置。构建输出路径和签名由本地脚本配置；首次构建请调整 `build.py`、根目录 `build.gradle`、`verify_native.py` 和 `app/build.gradle` 中的外置盘路径以符合自己的环境。
+
+## 导入失败时导出日志（migration.2 起）
+
+失败后点击“查看上次日志”查看原因，或点击“导出诊断日志”，在系统文件选择器中保存为 `.txt`。日志关闭应用后仍保留，最近五次任务各保存一份。报告记录导入模式、版本/Android信息、所选文档、分卷预期及实际大小、SHA256失败详情、处理阶段、空间、归档条目/拒绝规则/字节位置和异常链。不记录设置值、归档文件内容；JSON错误内容隐藏。日志可能包含设备型号和个人文件名，分享前请检查，不会自动上传。
+
+`Unsafe archive path` 现在会指出具体条目与绝对路径、上级目录、反斜杠等触发规则。此版本增加诊断，不代表此前截图中的未知根因已经修复；请用新版重试一次并导出失败报告。
