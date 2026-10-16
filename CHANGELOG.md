@@ -10,3 +10,10 @@ Adds Android-only offline backup/restore, a separate package/signing identity, <
 - Include rejected archive path/rule/entry/offset and expected/actual size and SHA256 on volume failures.
 - Add latest-report viewer and Android document-picker export; hide JSON contents in exception reports.
 - Retain archive safeguards and the existing transactional restore format; no connected-device acceptance for this version.
+
+
+## 0.4.0-migration.3 — 2026-10-16
+- Fix false rejection of valid Linux filenames containing literal backslashes, including systemd's escaped slice names.
+- Preserve POSIX names containing colons and other Windows-looking characters without renaming/decoding.
+- Keep real slash traversal, absolute-path and symlink-ancestor containment checks.
+- Ensure runtime export no longer silently omits legal escaped filenames. Diagnostic log/export remains available.

@@ -6,6 +6,31 @@ import java.nio.file.*;
 import java.util.*;
 import org.apache.commons.compress.archivers.tar.*;
 public class MigrationArchiveTest {
+ @Test public void linuxSystemdEscapedFilenameIsPreserved() throws Exception {
+  String filename="linuxfs/usr/lib/systemd/system/system-systemd\\x2dcryptsetup.slice";
+  byte[] bytes=with("./"+filename);Path dest=Files.createTempDirectory("systemd-name");
+  MigrationArchive.inspect(new ByteArrayInputStream(bytes),100,null);
+  MigrationArchive.extract(new ByteArrayInputStream(bytes),dest,100,null);
+  assertTrue(Files.isRegularFile(dest.resolve(filename)));
+  assertFalse(Files.exists(dest.resolve(filename.replace("\\x2d","-"))));
+ }
+ @Test public void literalBackslashDoesNotDisableSlashTraversalCheck() throws Exception {
+  assertThrows(IOException.class,()->MigrationArchive.inspect(new ByteArrayInputStream(with("linuxfs/literal\\name/../../escape")),100,null));
+ }
+ @Test public void posixNamesAreNotFilteredByWindowsConventions() throws Exception {
+  for(String filename:new String[]{"C:游戏\\存档?.sav","linuxfs/root/中文 😀 : * ? < > | \\ name"}){
+   Path dest=Files.createTempDirectory("posix-name");
+   MigrationArchive.extract(new ByteArrayInputStream(with(filename)),dest,100,null);
+   assertTrue(filename,Files.isRegularFile(dest.resolve(filename)));
+  }
+ }
+ @Test public void runtimeExportDoesNotSilentlyDropEscapedSystemdNames() throws Exception {
+  Path source=runtimeTree();String filename="linuxfs/usr/lib/systemd/system/system-systemd\\x2dcryptsetup.slice";
+  Files.createDirectories(source.resolve(filename).getParent());Files.write(source.resolve(filename),new byte[]{7});
+  ByteArrayOutputStream archive=new ByteArrayOutputStream();MigrationArchive.write(source,archive,"{}".getBytes(),null,true);
+  Path dest=Files.createTempDirectory("systemd-export");MigrationArchive.extract(new ByteArrayInputStream(archive.toByteArray()),dest,10000,null);
+  assertArrayEquals(new byte[]{7},Files.readAllBytes(dest.resolve(filename)));
+ }
  @Test public void unsafePathExplainsEntryAndRule() throws Exception {
   IOException e=assertThrows(IOException.class,()->MigrationArchive.inspect(new ByteArrayInputStream(with("linuxfs/../escape")),100,null));
   assertTrue(e.getMessage(),e.getMessage().contains("linuxfs/../escape"));

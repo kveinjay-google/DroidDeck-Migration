@@ -156,12 +156,14 @@ public final class MigrationArchive {
         return bytes.length;
     }
     private static String name(String raw) throws IOException {
+        // This is a Linux/Android archive. Only '/' separates directories;
+        // backslashes, colons and Windows-looking names are literal POSIX names.
+        // Never decode systemd's literal \xNN sequences or rewrite '\\' to '/'.
+        if (File.separatorChar != '/') throw new IOException("Restore requires a POSIX filesystem path provider");
         textBytes(raw);
         if (raw == null || raw.isEmpty()) throw unsafe(raw,"empty path");
         if (raw.startsWith("/")) throw unsafe(raw,"absolute path");
-        if (raw.indexOf('\\') >= 0) throw unsafe(raw,"backslash separator");
         if (raw.indexOf('\0') >= 0) throw unsafe(raw,"NUL character");
-        if (raw.matches("^[A-Za-z]:.*")) throw unsafe(raw,"Windows drive path");
         StringBuilder normalized = new StringBuilder();
         for (String part : raw.split("/")) { if (part.equals("..")) throw unsafe(raw,"parent traversal (..)"); if (part.isEmpty() || part.equals(".")) continue; if (normalized.length() > 0) normalized.append('/'); normalized.append(part); }
         if (normalized.length() == 0) throw new IOException("Empty archive path");
