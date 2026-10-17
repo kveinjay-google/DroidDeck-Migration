@@ -49,7 +49,7 @@ public final class MigrationService extends Service {
  }
  private String sourceDescription(String raw){
   if(raw==null)return "<not selected>";
-  Uri uri=Uri.parse(raw);String document="";
+  Uri uri=Uri.parse(raw);String document="file".equals(uri.getScheme())?uri.getPath():"";
   try{document=android.provider.DocumentsContract.isTreeUri(uri)?android.provider.DocumentsContract.getTreeDocumentId(uri):android.provider.DocumentsContract.getDocumentId(uri);}catch(Exception ignored){}
   return "scheme="+uri.getScheme()+"; provider="+uri.getAuthority()+"; document="+document;
  }

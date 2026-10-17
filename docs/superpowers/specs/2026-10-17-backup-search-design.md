@@ -1,0 +1,9 @@
+# Automatic split-backup discovery
+
+User requests automatic discovery because the system folder picker is difficult. Add a phone-native button to read permitted shared-storage roots, prioritize Download/Documents/cloud download folders and discover manifests recursively without requiring folder names. Request existing legacy READ_EXTERNAL_STORAGE permission when needed (targetSdk remains 28 for native runtime). Do not add broad all-files permission or scan private app data. Unsupported/denied access offers existing SAF folder selection.
+
+Bound one background worker: 90 seconds, 20,000 directories, 200,000 entries, depth 32, queue 4096, 100 candidates. Skip symbolic links and Android/data/obb; don't inspect file contents except <=1MiB backup manifests. Search is read-only and cancellable; report incomplete scans and access failures. Validate manifest schema/ordered names, all part presence/length; hashes stay in actual import. No literal filename filtering. Show both complete and incomplete candidates with explicit status. Even one result asks existing restore confirmation; multiple results require choosing one; never silently choose a backup.
+
+Restore discovered local folders through a file-backed BackupFiles adapter with no-follow opens and public-root confinement; existing SAF path remains supported. Revalidate metadata at selection/import and always use original two-pass hash/archive staging restore. Persist search diagnostic summaries without manifest settings or contents.
+
+Acceptance: tests for nested/arbitrarily named/multiple/missing/corrupt manifests, part lengths, limits/cancellation, symlink exclusion and file-backed hash reads. Android UI permission/result/confirmation tests, focused suite and same-signer migration.4 release. No claim of physical acceptance without a connected device.

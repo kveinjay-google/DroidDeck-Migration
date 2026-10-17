@@ -17,3 +17,10 @@ Adds Android-only offline backup/restore, a separate package/signing identity, <
 - Preserve POSIX names containing colons and other Windows-looking characters without renaming/decoding.
 - Keep real slash traversal, absolute-path and symlink-ancestor containment checks.
 - Ensure runtime export no longer silently omits legal escaped filenames. Diagnostic log/export remains available.
+
+## 0.4.0-migration.4 — 2026-10-17
+- Add cancellable bounded public-storage backup discovery, prioritizing Quark download subtrees.
+- Show complete/incomplete candidates and precise missing-volume/size reasons; require confirmation before restore.
+- Add permission guidance, manual picker fallback and search diagnostics.
+- Reuse verified transactional restore through a confined local-file adapter; reject symlink/private-path traversal.
+- Validation: 73 JVM/Robolectric tests pass and release build succeeds; physical-device acceptance pending.

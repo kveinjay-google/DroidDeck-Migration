@@ -6,23 +6,32 @@ import android.database.Cursor;
 import org.json.*;
 import java.io.*;
 import java.util.*;
+import java.nio.file.*;
 /** SAF directory access plus split-volume manifest. No broad storage permission is required. */
 public final class BackupFiles {
- private final ContentResolver resolver;private final Uri tree,root;
- public BackupFiles(Context c,Uri tree){resolver=c.getContentResolver();this.tree=tree;root=DocumentsContract.buildDocumentUriUsingTree(tree,DocumentsContract.getTreeDocumentId(tree));}
+ private final ContentResolver resolver;private final Uri tree,root;private final Context context;private final Path local;
+ public BackupFiles(Context c,Uri tree)throws IOException{context=c;resolver=c.getContentResolver();this.tree=tree;
+  if("file".equals(tree.getScheme())){if(tree.getPath()==null)throw new IOException("本地备份目录无效");local=BackupStorage.requirePublicFolder(c,Paths.get(tree.getPath()));root=tree;}
+  else{local=null;root=DocumentsContract.buildDocumentUriUsingTree(tree,DocumentsContract.getTreeDocumentId(tree));}
+ }
  public Uri createFolder(String name)throws IOException{try{Uri uri=DocumentsContract.createDocument(resolver,root,DocumentsContract.Document.MIME_TYPE_DIR,name);if(uri==null)throw new IOException("无法创建备份目录");return uri;}catch(Exception e){throw new IOException("无法创建备份目录",e);}}
  public OutputStream create(Uri folder,String name,String mime)throws IOException{
   try{Uri uri=DocumentsContract.createDocument(resolver,folder,mime,name);if(uri==null)throw new IOException("无法创建文件："+name);OutputStream out=resolver.openOutputStream(uri,"w");if(out==null)throw new IOException("无法写入文件："+name);return new BufferedOutputStream(out,65536);}catch(Exception e){throw new IOException("写入备份失败："+name,e);}
  }
  public Map<String,Uri> children()throws IOException{return children(root);}
  public Map<String,Uri> children(Uri folder)throws IOException{
+  if(local!=null){BackupStorage.requirePublicFolder(context,local);Map<String,Uri> result=new HashMap<>();int entries=0;
+   try(DirectoryStream<Path> files=Files.newDirectoryStream(local)){for(Path file:files){if(++entries>200000)throw new IOException("备份目录条目过多，请仅保留备份文件");String name=file.getFileName().toString();if((name.equals("backup.ddbackup.json")||name.matches("part-[0-9]{4}\\.bin"))&&Files.isRegularFile(file,LinkOption.NOFOLLOW_LINKS))result.put(name,Uri.fromFile(file.toFile()));}}
+   return result;
+  }
   Map<String,Uri> result=new HashMap<>();Uri listing=DocumentsContract.buildChildDocumentsUriUsingTree(tree,DocumentsContract.getDocumentId(folder));
   try(Cursor cursor=resolver.query(listing,new String[]{DocumentsContract.Document.COLUMN_DOCUMENT_ID,DocumentsContract.Document.COLUMN_DISPLAY_NAME},null,null,null)){
    if(cursor==null)throw new IOException("无法读取备份文件夹");while(cursor.moveToNext()){String name=cursor.getString(1);if(result.put(name,DocumentsContract.buildDocumentUriUsingTree(tree,cursor.getString(0)))!=null)throw new IOException("备份文件夹存在重名文件");}
   }return result;
  }
- public InputStream open(Uri uri)throws IOException{InputStream in=resolver.openInputStream(uri);if(in==null)throw new IOException("无法读取备份文件");return new BufferedInputStream(in,65536);}
+ public InputStream open(Uri uri)throws IOException{if(local!=null){BackupStorage.requirePublicFolder(context,local);Path file=Paths.get(uri.getPath()).toAbsolutePath().normalize();if(!local.equals(file.getParent()))throw new IOException("备份文件不在所选目录中");return new BufferedInputStream(Files.newInputStream(file,LinkOption.NOFOLLOW_LINKS),65536);}InputStream in=resolver.openInputStream(uri);if(in==null)throw new IOException("无法读取备份文件");return new BufferedInputStream(in,65536);}
  public void describe(Uri document,MigrationDiagnostics log){
+  if(local!=null){try{Path file=Paths.get(document.getPath());log.event("documentMetadata","name="+file.getFileName()+"; actualSize="+Files.size(file));}catch(Exception e){log.event("documentMetadata","unavailable: "+e.getClass().getSimpleName());}return;}
   try(Cursor c=resolver.query(document,new String[]{DocumentsContract.Document.COLUMN_DISPLAY_NAME,DocumentsContract.Document.COLUMN_SIZE},null,null,null)){
    if(c!=null&&c.moveToFirst())log.event("documentMetadata","name="+c.getString(0)+"; actualSize="+(c.isNull(1)?"unknown":Long.toString(c.getLong(1))));
   }catch(Exception e){log.event("documentMetadata","unavailable: "+e.getClass().getSimpleName());}
